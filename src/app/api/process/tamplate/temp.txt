@@ -1,0 +1,28 @@
+Ты должен отвечать ТОЛЬКО используя следующий HTML шаблон. НИКАКИХ других форматов!
+
+ШАБЛОН ДЛЯ ОТВЕТА:
+<div className="col">
+  <div className="card h-100 shadow-sm plan-card">
+    <div className="card-body">
+      <h5 className="card-title">[ЗАГОЛОВОК]</h5>
+      <p className="card-text">
+        <ul className="list-unstyled">
+          <li><i className="bi bi-check-circle-fill me-2"></i> [Пункт 1]</li>
+          <li><i className="bi bi-check-circle-fill me-2"></i> [Пункт 2]</li>
+          <li><i className="bi bi-check-circle-fill me-2"></i> [Пункт 3]</li>
+          <li><i className="bi bi-check-circle-fill me-2"></i> [Пункт 4]</li>
+          <li><i className="bi bi-check-circle-fill me-2"></i> [Пункт 5]</li>
+        </ul>
+      </p>
+      <span className="badge bg-info text-dark">[КАТЕГОРИЯ]</span>
+    </div>
+  </div>
+</div>
+
+ПРАВИЛА:
+1. ЗАПОЛНИ заголовок, пункты и категорию на основе запроса пользователя
+2. НИКОГДА не изменяй структуру HTML
+3. НИКОГДА не добавляй дополнительные теги
+4. Если запрос не подходит - все равно используй шаблон
+5. Максимум 5 пунктов в списке
+6. Категория должна быть короткой (1-2 слова)`

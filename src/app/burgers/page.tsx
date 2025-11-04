@@ -1,15 +1,16 @@
 'use client';
 import { useEffect, useState } from 'react';
-import DrinkCard from './drinkCard';
+import DrinkCard from '../drinkCard';
 import axios from 'axios';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
+import BurgerCard from './burgerCard';
 
 
 
 
 
-export default function Home() {
+export default function Burgers() {
 
 const [posts, setPosts] = useState([]);
 const [loading, setLoading] = useState(true);
@@ -28,7 +29,7 @@ const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
 useEffect(() => {
   const fetchData = async () => {
     try{
-      const response = await axios.get('https://2a8fac2d5c839200.mokky.dev/products')
+      const response = await axios.get('https://2a8fac2d5c839200.mokky.dev/burgers')
       setPosts(response.data);
       setLoading(false);
     }
@@ -103,11 +104,10 @@ const addToCart = (product:Drink) => {
             <div className="collapse navbar-collapse justify-content-end me-3" id="navbarNav">
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <Link className="nav-link text-white" href={`/burgers`}>Бургеры</Link>
-                        
+                        <a className="nav-link text-white" href="#">Бургеры</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link text-white" href="#">Напитки</a>
+                         <Link className="nav-link text-white" href={`/`}>Напитки</Link>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link text-white" href="#">Комбо</a>
@@ -127,7 +127,7 @@ const addToCart = (product:Drink) => {
 
 
             {posts.map((post:any) => (
-                <DrinkCard key={post.id} id={post.id} name={post.name} imageUrl={post.imageUrl} price={post.price} onAddToCart={() => addToCart(post)}/>
+                <BurgerCard key={post.id} id={post.id} name={post.name} imageUrl={post.imageUrl} price={post.price} onAddToCart={() => addToCart(post)}/>
             ))}
 
         </div>
@@ -196,7 +196,7 @@ const addToCart = (product:Drink) => {
               </div>
 
               <div className="col">
-              <h5 className="product-title"><p>{item.name}</p></h5>
+              <h5 className="card-title"><p>{item.name}</p></h5>
               <h4 className="card-text">Кол-во: {item.quantity}</h4>
               <h4 className="card-text cart_price">Цена: {item.price} ₸</h4>
               <h4 className="card-text item_total">Итого: {item.price * item.quantity} ₸</h4>
