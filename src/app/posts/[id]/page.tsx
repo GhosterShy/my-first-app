@@ -83,6 +83,8 @@ function DetailPage() {
 
 
 
+
+
     if (loading) {
         return (
              <div className="loading-container">
@@ -114,25 +116,28 @@ function DetailPage() {
             <p><b>{pathname}</b></p>
             <div className="product-info">
             <section className="product-image">
-                <img src={product.imageUrl} alt="Изображение продукта" /> 
+                <img className="img_product" src={product.imageUrl} alt="Изображение продукта" /> 
             </section>
+            
             <section className="product-details">
+              <div className="detail_div">
                 <h2 className="product-title">{product.name}</h2> 
             
-                <p className="product-price">Цена: {product.price} $</p> 
+                <p className="product-price">Цена: {product.price} т</p> 
                 <div className="product-description">
                     <h3>Описание:</h3>
                     <p>{product.description}</p> 
                 </div>
-                <button className="add-to-cart-button">Добавить в корзину</button>
+                <button  className="add-to-cart-button">Добавить в корзину</button>
+                </div>
             </section>
             </div>
 
-
+          <div className="Comment_div">
            <form onSubmit={SubmitComment} className="comment-section">
-        <label htmlFor="comment" className="form-label">Оставить комментарий:</label>
-        <div className="comment-form-group">
-          
+          <label htmlFor="comment" className="form-label">Оставить комментарий:</label>
+          <div className="comment-form-group">
+            
         <textarea
           id="comment"
           placeholder="Напишите комментарий..."
@@ -150,7 +155,7 @@ function DetailPage() {
 
 
         <div className="comments-section">
-            <h3 className="comment_text">Комментарии:</h3>
+            <h5 className="comment_text">Комментарии:</h5>
             {comments.length === 0 ? (
                 <p className="com_P">Нет комментариев.</p>) : (
                     comments.map((comment) => (
@@ -159,6 +164,7 @@ function DetailPage() {
             )}
                        
 
+        </div>
         </div>
         </main>
         

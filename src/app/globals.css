@@ -8,7 +8,10 @@ body {
     object-fit:contain;    
 }
 
-
+.search_div
+{
+  margin-left: 50px;
+}
 
 .img_div{
     width:90%;
@@ -157,6 +160,9 @@ body {
 
 
 /* Корзина*/
+
+
+
 
 .side-cart {
   position: fixed;

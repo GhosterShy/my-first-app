@@ -4,6 +4,7 @@ import DrinkCard from './drinkCard';
 import axios from 'axios';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
+import { useSearchParams, useRouter } from "next/navigation";
 
 
 
@@ -13,6 +14,14 @@ export default function Home() {
 
 const [posts, setPosts] = useState([]);
 const [loading, setLoading] = useState(true);
+
+
+const router = useRouter();
+const searchParams = useSearchParams();
+const q = searchParams.get("q") || "";
+
+
+const [value, setValue] = useState(q);
 
 interface CartItem extends Drink {
   quantity: number;
@@ -41,6 +50,24 @@ useEffect(() => {
   fetchData();
   
 },[]);
+
+
+const handleSearch = (e:any) => {
+    const text = e.target.value;
+    setValue(text);
+
+    const params = new URLSearchParams();
+    if (text) params.set("q", text);
+
+    router.push(`/?${params.toString()}`);
+  };
+
+  const filtered = posts.filter((item:Drink) =>
+    item.name.toLowerCase().includes(q.toLowerCase())
+  );
+
+
+
 
  if (loading) {
         return (
@@ -100,7 +127,14 @@ const addToCart = (product:Drink) => {
       <nav className="navbar navbar-expand-lg bahandi-navbar">
         <div className="container-fluid">
             <a className="navbar-brand text-white fw-bold ms-3" href="#">BAHANDI</a>
+
+             <form className="d-flex search_div">
+                  <input  value={value||""} onChange={handleSearch} className="form-control me-2" type="search" placeholder="Найти..." aria-label="Search" style={{border:'none'}}/>
+                  <button style={{backgroundColor:'#e04d1cff',border:'none',color:'#fff'}} className="btn btn-outline-success" type="submit">Найти</button>
+                </form>
+
             <div className="collapse navbar-collapse justify-content-end me-3" id="navbarNav">
+
                 <ul className="navbar-nav">
                     <li className="nav-item">
                         <Link className="nav-link text-white" href={`/burgers`}>Бургеры</Link>
@@ -112,10 +146,13 @@ const addToCart = (product:Drink) => {
                     <li className="nav-item">
                         <a className="nav-link text-white" href="#">Комбо</a>
                     </li>
+                    
                     <li className="nav-item">
                         <button onClick={openCart} className=" nav-link btn btn-danger ms-2 px-3 py-1 " >Корзина</button>
                     </li>
                 </ul>
+
+                
             </div>
         </div>
     </nav>
@@ -126,7 +163,7 @@ const addToCart = (product:Drink) => {
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
 
 
-            {posts.map((post:any) => (
+            {filtered.map((post:any) => (
                 <DrinkCard key={post.id} id={post.id} name={post.name} imageUrl={post.imageUrl} price={post.price} onAddToCart={() => addToCart(post)}/>
             ))}
 
