@@ -1,11 +1,12 @@
 'use client';
-import { useParams } from "next/navigation";
+import { useParams,usePathname } from "next/navigation";
 import { useEffect, useState,FormEvent } from 'react';
 import React from "react";
 import axios from "axios";
 import Link from "next/link";
 import CommentsPage from "./commentPage";
 import "./style.css"
+
 
 function DetailPage() { 
     const { id } = useParams();
@@ -18,6 +19,8 @@ function DetailPage() {
     const [commentText, setCommentText] = useState<string>('');
     const [submitMessage, setSubmitMessage] = useState<string>('');
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
+    const pathname = usePathname();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -108,6 +111,7 @@ function DetailPage() {
 
     return (
         <main className="product-container">
+            <p><b>{pathname}</b></p>
             <div className="product-info">
             <section className="product-image">
                 <img src={product.imageUrl} alt="Изображение продукта" /> 
