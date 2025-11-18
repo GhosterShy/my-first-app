@@ -1,4 +1,5 @@
-'use client';
+"use client";
+
 import { useEffect, useState } from 'react';
 import DrinkCard from './drinkCard';
 import axios from 'axios';
