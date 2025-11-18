@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { useSearchParams, useRouter } from "next/navigation";
 import { Suspense } from "react";
 import SearchForm from "./SearchForm";
+import FilteredList from './FilteredList'
 
 
 
@@ -19,8 +20,8 @@ const [posts, setPosts] = useState([]);
 const [loading, setLoading] = useState(true);
 
 
-const searchParams = useSearchParams();
-const q = searchParams.get("q") || "";
+// const searchParams = useSearchParams();
+// const q = searchParams.get("q") || "";
 
 
 
@@ -64,9 +65,9 @@ useEffect(() => {
 //     router.push(`/?${params.toString()}`);
 //   };
 
-  const filtered = posts.filter((item:Drink) =>
-    item.name.toLowerCase().includes(q.toLowerCase())
-  );
+  // const filtered = posts.filter((item:Drink) =>
+  //   item.name.toLowerCase().includes(q.toLowerCase())
+  // );
 
 
 
@@ -166,14 +167,19 @@ const addToCart = (product:Drink) => {
    
     <div className="container mt-5 mb-5">
         <h2 className="section-title mb-4">Напитки</h2>
-        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+        {/* <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4"> */}
 
 
-            {filtered.map((post:any) => (
+            {/* {filtered.map((post:any) => (
                 <DrinkCard key={post.id} id={post.id} name={post.name} imageUrl={post.imageUrl} price={post.price} onAddToCart={() => addToCart(post)}/>
-            ))}
+            ))} */}
 
-        </div>
+
+          <FilteredList posts={posts}/>
+
+
+
+        {/* </div> */}
     </div>
 
 
